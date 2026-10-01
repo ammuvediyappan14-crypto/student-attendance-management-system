@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-1">Dashboard</h2><p class="text-muted">Today's date: {{ today }}</p>
+<div class="row g-3">
+<div class="col-md-4"><div class="card stat-card shadow-sm"><div class="card-body"><h6>Total Students</h6><h2>{{ total_students }}</h2></div></div></div>
+<div class="col-md-4"><div class="card stat-card shadow-sm"><div class="card-body"><h6>Present Today</h6><h2>{{ present }}</h2></div></div></div>
+<div class="col-md-4"><div class="card stat-card shadow-sm"><div class="card-body"><h6>Absent Today</h6><h2>{{ absent }}</h2></div></div></div>
+</div>
+<div class="card shadow-sm mt-4"><div class="card-body">
+<h5>Quick Actions</h5>
+<a href="{{ url_for('students') }}" class="btn btn-primary me-2">Add Students</a>
+<a href="{{ url_for('attendance') }}" class="btn btn-success me-2">Mark Attendance</a>
+<a href="{{ url_for('reports') }}" class="btn btn-secondary">View Reports</a>
+</div></div>
+{% endblock %}

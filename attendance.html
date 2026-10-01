@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Mark Attendance</h2>
+<form method="get" class="row g-2 mb-3">
+<div class="col-md-3"><input type="date" name="att_date" value="{{selected_date}}" class="form-control"></div>
+<div class="col-md-2"><button class="btn btn-secondary">Load Date</button></div>
+</form>
+<form method="post">
+<input type="hidden" name="att_date" value="{{selected_date}}">
+<div class="table-responsive"><table class="table table-bordered bg-white">
+<tr><th>Roll No</th><th>Name</th><th>Department</th><th>Status</th></tr>
+{% for s in students %}
+{% set st = existing.get(s.id, 'Present') %}
+<tr><td>{{s.roll_no}}</td><td>{{s.name}}</td><td>{{s.department}}</td>
+<td><select name="status_{{s.id}}" class="form-select">
+<option {% if st=='Present' %}selected{% endif %}>Present</option>
+<option {% if st=='Absent' %}selected{% endif %}>Absent</option>
+</select></td></tr>
+{% else %}<tr><td colspan="4" class="text-center">Add students first.</td></tr>{% endfor %}
+</table></div>
+{% if students %}<button class="btn btn-success">Save Attendance</button>{% endif %}
+</form>
+{% endblock %}

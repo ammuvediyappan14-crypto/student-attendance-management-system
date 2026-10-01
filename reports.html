@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Attendance Report</h2>
+<div class="table-responsive mt-3"><table class="table table-bordered table-hover bg-white">
+<tr><th>Roll No</th><th>Name</th><th>Department</th><th>Year</th><th>Present</th><th>Total</th><th>Percentage</th></tr>
+{% for r in rows %}
+{% set pct = (r.present / r.total * 100) if r.total else 0 %}
+<tr><td>{{r.roll_no}}</td><td>{{r.name}}</td><td>{{r.department}}</td><td>{{r.year}}</td>
+<td>{{r.present}}</td><td>{{r.total}}</td><td><strong>{{"%.2f"|format(pct)}}%</strong></td></tr>
+{% else %}<tr><td colspan="7" class="text-center">No report data.</td></tr>{% endfor %}
+</table></div>
+{% endblock %}
